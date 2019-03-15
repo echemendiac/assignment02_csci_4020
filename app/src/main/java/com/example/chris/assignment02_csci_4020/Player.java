@@ -16,12 +16,10 @@ public class Player {
     private Context context;
     private double multiplier;
 
-    public Player() {
-
-    }
 
     public Player(String name) {
         this.name = name;
+        this.highScore=0;
     }
 
     public Player(Context context) {
@@ -45,7 +43,7 @@ public class Player {
     }
 
     public int getScore() {
-        return sequenceCount;
+        return highScore;
     }
 
     public void setScore(int sequenceCount) {

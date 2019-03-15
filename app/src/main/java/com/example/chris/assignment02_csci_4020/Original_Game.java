@@ -73,31 +73,35 @@ public class Original_Game extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 playerName_tv.setText(player.getName());
-                playerScore_tv.setText(player.getScore());
+                playerScore_tv.setText(player.getScore() +" pts.");
+
                 sequence = new randomSequence();
 
-                Collections.copy(buttonmap,sequence.getSequence());
+                buttonmap = new Vector<Integer>();
+                buttonmap.addAll(sequence.getSequence());
+                Log.i("O Game", buttonmap+"");
 
                 for(int i=0; i<buttonmap.size();i++){
 
                      //read in value from map Reader
                     switch(buttonmap.get(i)){
                         case 1:
-                            green_b.setBackgroundColor(0x1aff1a);
+                            green_b.setBackgroundColor(Color.GREEN);
                             break;
                         case 2:
-                            red_b.setBackgroundColor(0xff0000);
+                            red_b.setBackgroundColor(Color.RED);
                             break;
                         case 3:
-                            yellow_b.setBackgroundColor(0xffff4d);
+                            yellow_b.setBackgroundColor(Color.YELLOW);
                             break;
                         case 4:
-                            blue_b.setBackgroundColor(0x80dfff);
+                            blue_b.setBackgroundColor(Color.BLUE);
                             break;
                         default:
                             Log.i("O Game", "Error: randomsequence off track" + buttonmap.get(i));
 
                     }
+
                 }
 
             }

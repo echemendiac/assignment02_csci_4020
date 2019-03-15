@@ -5,7 +5,7 @@ import java.util.Random;
 
 
 public class randomSequence {
-    private Vector sequence = new Vector();
+    private Vector<Integer> sequence = new Vector<Integer>();
     private int nextRand;
     private Random rand;
 
@@ -19,5 +19,8 @@ public class randomSequence {
         this.nextRand = (this.rand.nextInt(4)+ 1);
         this.sequence.add(nextRand);
         return this.sequence;
+    }
+    public int GetSize(){
+        return this.sequence.size();
     }
 }

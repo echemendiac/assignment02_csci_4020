@@ -1,10 +1,12 @@
 package com.example.chris.assignment02_csci_4020;
 
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,8 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         soundsLoaded = new HashSet<Integer>();
-    }
 
+        //---- Buttons to StartGames ----//
+        findViewById(R.id.originalGame_b).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Original_Game.class));
+            }
+        });
+    }
     @Override
     protected void onResume(){
         super.onResume();

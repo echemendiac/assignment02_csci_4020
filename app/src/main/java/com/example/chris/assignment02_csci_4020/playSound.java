@@ -8,13 +8,13 @@ import java.util.Set;
 public class playSound {
     private SoundPool soundPool;
     private Set<Integer> soundsLoaded;
-    soundsLoaded = new HashSet<Integer>();
+    /*soundsLoaded = new HashSet<666>();
 
 
     public static void playSoundByInt(Int i){
 
 
-    }
+    }*/
 
 
 }

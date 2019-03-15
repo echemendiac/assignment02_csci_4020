@@ -20,6 +20,11 @@ public class randomSequence {
         this.sequence.add(nextRand);
         return this.sequence;
     }
+
+    public void clearSequence(){
+        this.sequence.clear();
+    }
+
     public int GetSize(){
         return this.sequence.size();
     }

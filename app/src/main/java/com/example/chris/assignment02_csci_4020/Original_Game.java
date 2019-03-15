@@ -302,7 +302,7 @@ public class Original_Game extends AppCompatActivity{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Integer game = 0;
+            Integer isOver = 0;
             Integer score = 0;
 
             try {
@@ -324,7 +324,7 @@ public class Original_Game extends AppCompatActivity{
                     }
 
                     score = game.getScore();
-                    publishProgress(isOver, score);
+                    //publishProgress(isOver, score);
 
                     Thread.sleep(1000);
                 }
@@ -335,8 +335,8 @@ public class Original_Game extends AppCompatActivity{
             return null;
         }
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
+        /*@Override
+        protected void onProgressUpdate(Vector<Integer>... values) {
             Integer status = values[0];
             Integer score = values[1];
             if(status == 0){
@@ -346,7 +346,7 @@ public class Original_Game extends AppCompatActivity{
                 Log.i("Game", "Game is over with score" + score);
 
             }
-        }
+        }*/
     }
 
 

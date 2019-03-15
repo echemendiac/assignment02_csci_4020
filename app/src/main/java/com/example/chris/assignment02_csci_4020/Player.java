@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import com.example.chris.assignment02_csci_4020.Original_Game;
 
+import java.util.Vector;
+
 public class Player {
     private String name;
     private int highScore;

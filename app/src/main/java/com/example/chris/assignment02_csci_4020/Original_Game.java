@@ -24,9 +24,11 @@ import java.util.Vector;
 
 public class Original_Game extends AppCompatActivity implements View.OnClickListener{
 
-    Player player;
-    TextView    playerName_tv,
-                playerScore_tv;
+Player player;                  //This object represents the player
+    Game_Engine game;           //This object controls the game
+    TextView    playerName_tv,  //Some of the textviews for the game
+                playerScore_tv,
+                title_tv;
 
     Button      green_b,
                 red_b,
@@ -34,6 +36,7 @@ public class Original_Game extends AppCompatActivity implements View.OnClickList
                 blue_b;
     randomSequence sequence;
     Vector<Integer> buttonmap;
+    final int original = 1; //mode for the game
 
 
 
@@ -42,7 +45,10 @@ public class Original_Game extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
+        title_tv = findViewById(R.id.title_tv);
+        title_tv.setText("Original Game");
 
+        //---- Create InGame Objects ----//
         player = new Player(this);
 
 
@@ -68,14 +74,18 @@ public class Original_Game extends AppCompatActivity implements View.OnClickList
         blue_b = findViewById(R.id.gameb4);
         blue_b.setOnClickListener(this);
 
-
+        //Start Button Onclick listener
         findViewById(R.id.start_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 playerName_tv.setText(player.getName());
                 playerScore_tv.setText(player.getScore() +" pts.");
 
+                //---- Start new Game Objects ----//
                 sequence = new randomSequence();
+                game = new Game_Engine(original);
+
 
                 buttonmap = new Vector<Integer>();
                 buttonmap.addAll(sequence.getSequence());
@@ -112,5 +122,20 @@ public class Original_Game extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()){
+            case R.id.gameb1:
+                game.addPlayerInput(1);
+                break;
+            case R.id.gameb2:
+                game.addPlayerInput(2);
+                break;
+
+            case R.id.gameb3:
+                game.addPlayerInput(3);
+                break;
+            case R.id.gameb4:
+                game.addPlayerInput(4);
+                break;
+        }
     }
 }

@@ -55,9 +55,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final int b1Sound = soundPool.load(this, R.raw.menegassbd, 1);
+        final int b2Sound = soundPool.load(this, R.raw.modularsamplesdsitetrashortsfshorts, 1);
+        final int b3Sound = soundPool.load(this, R.raw.jnvrbsse, 1);
+        final int b4Sound = soundPool.load(this, R.raw.resofactorcblip, 1);
 
         if(soundsLoaded.contains(b1Sound)){
             soundPool.play(b1Sound,1.0f, 1.0f, 0, 0, 1.0f );
+        }
+        if(soundsLoaded.contains(b1Sound)){
+            soundPool.play(b2Sound,1.0f, 1.0f, 0, 0, 1.0f );
+        }
+        if(soundsLoaded.contains(b1Sound)){
+            soundPool.play(b3Sound,1.0f, 1.0f, 0, 0, 1.0f );
+        }
+        if(soundsLoaded.contains(b1Sound)){
+            soundPool.play(b4Sound,1.0f, 1.0f, 0, 0, 1.0f );
         }
     }
 }

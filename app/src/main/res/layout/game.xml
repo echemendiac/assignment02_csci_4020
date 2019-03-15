@@ -39,14 +39,14 @@
             >
 
             <Button
-              android:id="@+id/game00"
+              android:id="@+id/gameb1"
               android:layout_width="0dp"
               android:layout_weight="1"
               android:layout_height="match_parent"
                 android:background="#004d00"
               />
             <Button
-                android:id="@+id/game01"
+                android:id="@+id/gameb2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -63,14 +63,14 @@
             >
 
             <Button
-                android:id="@+id/game10"
+                android:id="@+id/gameb3"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:background="#4d4d00"
                 />
             <Button
-                android:id="@+id/game11"
+                android:id="@+id/gameb4"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"

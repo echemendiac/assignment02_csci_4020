@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Simon Says"
+        android:text=" "
         android:textColor="@android:color/black"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,14 +43,14 @@
               android:layout_width="0dp"
               android:layout_weight="1"
               android:layout_height="match_parent"
-                android:background="#004d00"
+                android:background="#32f724"
               />
             <Button
                 android:id="@+id/gameb2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="#4d0000"
+                android:background="#f72525"
                 />
         </LinearLayout>
         <LinearLayout
@@ -67,14 +67,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="#4d4d00"
+                android:background="#eef74a"
                 />
             <Button
                 android:id="@+id/gameb4"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="#00394d"
+                android:background="#4aacf7"
                 />
         </LinearLayout>
     </LinearLayout>

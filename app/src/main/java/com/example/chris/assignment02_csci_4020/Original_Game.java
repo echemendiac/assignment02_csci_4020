@@ -17,6 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -53,84 +56,15 @@ public class Original_Game extends AppCompatActivity{
     final randomSequence sequence = new randomSequence();
     final Vector<Integer> soundIds = new Vector<Integer>();
 
+    final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
         soundsLoaded = new HashSet<Integer>();
-
-        /*title_tv = findViewById(R.id.title_tv);
-        title_tv.setText("Original Game");
-
-        //---- Create InGame Objects ----//
-        player = new Player(this);
-
-
-        Log.i("o game", "am I working");
-
-        //---- Set Up TextViews ----//
-        playerName_tv = findViewById(R.id.playerName_tv);
-        playerScore_tv = findViewById(R.id.playerScore_tv);
-
-        //---- Create Java GameGrid Buttons ----//
-
-
-        //---- SetUp GameGrid Button Onclick ----//
-        green_b = findViewById(R.id.gameb1);
-        green_b.setOnClickListener(this);
-
-        red_b = findViewById(R.id.gameb2);
-        red_b.setOnClickListener(this);
-
-        yellow_b = findViewById(R.id.gameb3);
-        yellow_b.setOnClickListener(this);
-
-        blue_b = findViewById(R.id.gameb4);
-        blue_b.setOnClickListener(this);
-
-        //Start Button Onclick listener
-        findViewById(R.id.start_b).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                playerName_tv.setText(player.getName());
-                playerScore_tv.setText(player.getScore() +" pts.");
-
-                //---- Start new Game Objects ----//
-                sequence = new randomSequence();
-                game = new Game_Engine(original);
-
-
-                buttonmap = new Vector<Integer>();
-                buttonmap.addAll(sequence.getSequence());
-                Log.i("O Game", buttonmap+"");
-
-                for(int i=0; i<buttonmap.size();i++){
-
-                     //read in value from map Reader
-                    switch(buttonmap.get(i)){
-                        case 1:
-                            green_b.setBackgroundColor(Color.GREEN);
-                            break;
-                        case 2:
-                            red_b.setBackgroundColor(Color.RED);
-                            break;
-                        case 3:
-                            yellow_b.setBackgroundColor(Color.YELLOW);
-                            break;
-                        case 4:
-                            blue_b.setBackgroundColor(Color.BLUE);
-                            break;
-                        default:
-                            Log.i("O Game", "Error: randomsequence off track" + buttonmap.get(i));
-
-                    }
-
-                }
-
-            }
-        });*/
     }
 
     @Override
@@ -138,7 +72,6 @@ public class Original_Game extends AppCompatActivity{
         super.onResume();
 
         title_tv = findViewById(R.id.title_tv);
-        title_tv.setText("Original Game");
 
         //---- Create InGame Objects ----//
         player = new Player(this);
@@ -180,7 +113,7 @@ public class Original_Game extends AppCompatActivity{
                     //read in value from map Reader
                     switch(buttonmap.get(i)){
                         case 1:
-                            green_b.setBackgroundColor(Color.GREEN);
+                            green_b.setBackgroundColor(Color.rgb(255, 35, 35));
                             break;
                         case 2:
                             red_b.setBackgroundColor(Color.RED);
@@ -231,10 +164,16 @@ public class Original_Game extends AppCompatActivity{
         soundIds.add(gb3Sound);
         soundIds.add(gb4Sound);
 
+        animation.setDuration(50); //You can manage the blinking time with this parameter
+        animation.setStartOffset(20);
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setRepeatCount(1);
+
+
         findViewById(R.id.gameb1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playSound(gb1Sound);
+                playSound(gb1Sound, 1);
                 if (game.isStarted()) {
                     game.addPlayerInput(1);
                     onInpuChecks();
@@ -245,7 +184,7 @@ public class Original_Game extends AppCompatActivity{
         findViewById(R.id.gameb2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playSound(gb2Sound);
+                playSound(gb2Sound, 2);
                 if (game.isStarted()) {
                     game.addPlayerInput(2);
                     onInpuChecks();
@@ -255,7 +194,7 @@ public class Original_Game extends AppCompatActivity{
         findViewById(R.id.gameb3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playSound(gb3Sound);
+                playSound(gb3Sound, 3);
                 if (game.isStarted()) {
                     game.addPlayerInput(3);
                     onInpuChecks();
@@ -266,7 +205,7 @@ public class Original_Game extends AppCompatActivity{
         findViewById(R.id.gameb4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playSound(gb4Sound);
+                playSound(gb4Sound, 4);
                 if (game.isStarted()) {
                     game.addPlayerInput(4);
                     onInpuChecks();
@@ -279,7 +218,7 @@ public class Original_Game extends AppCompatActivity{
             public void onClick(View v) {
 
                 //startCounter();
-                if(game.getPlayerISize() > 0){
+                if(game.getPlayerISize() > 0 || game.isStarted()){
                     game.reset();
                 }
                 sequence.clearSequence();
@@ -319,9 +258,23 @@ public class Original_Game extends AppCompatActivity{
         }
     }
 
-    private void playSound(int soundId) {
+    private void playSound(int soundId, int buttonNum) {
         if (soundsLoaded.contains(soundId)) {
             soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
+            switch(buttonNum){
+                case 1:
+                    findViewById(R.id.gameb1).startAnimation(animation);
+                    break;
+                case 2:
+                    findViewById(R.id.gameb2).startAnimation(animation);
+                    break;
+                case 3:
+                    findViewById(R.id.gameb3).startAnimation(animation);
+                    break;
+                case 4:
+                    findViewById(R.id.gameb4).startAnimation(animation);
+                    break;
+            }
         }
     }
 
@@ -343,36 +296,40 @@ public class Original_Game extends AppCompatActivity{
 
             if(gInput.elementAt(i) == 1){
                 Log.i("game", "hit green");
-                playSound(sounds.elementAt(0));
+                //findViewById(R.id.gameb1).startAnimation(animation);
+                playSound(sounds.elementAt(0),1);
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             else if(gInput.elementAt(i) == 2){
                 Log.i("game", "hit red");
-                playSound(sounds.elementAt(1));
+                //findViewById(R.id.gameb2).startAnimation(animation);
+                playSound(sounds.elementAt(1), 2);
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             else if(gInput.elementAt(i) == 3){
                 Log.i("game", "hit yellow");
-                playSound(sounds.elementAt(2));
+                //findViewById(R.id.gameb3).startAnimation(animation);
+                playSound(sounds.elementAt(2), 3);
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
             else if(gInput.elementAt(i) == 4){
                 Log.i("game", "hit blue");
-                playSound(sounds.elementAt(3));
+                //findViewById(R.id.gameb4).startAnimation(animation);
+                playSound(sounds.elementAt(3), 4);
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

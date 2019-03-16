@@ -1,5 +1,7 @@
 package com.example.chris.assignment02_csci_4020;
 
+import android.util.Log;
+
 import java.util.Vector;
 
 public class Game_Engine {
@@ -7,12 +9,15 @@ public class Game_Engine {
     private int playerISize = 0;
     private Vector<Integer> gameInput;
     private int gameInputSize = 0;
-    private Integer score;
+    private Integer score = 0;
     private int mode;
+
+
+    private boolean started = false;
 
     public void addPlayerInput(int num) {
         this.playerInput.add(num);
-        playerISize = playerISize + 1;
+        playerISize += 1;
     }
     public void clearPlayerInput(){
         playerInput.removeAllElements();
@@ -36,6 +41,7 @@ public class Game_Engine {
 
     public void addGameInput(Vector<Integer> seq){
         this.gameInput = seq;
+        this.started = true;
         gameInputSize = gameInputSize + 1;
     }
     public void clearGameInput(){
@@ -65,5 +71,24 @@ public class Game_Engine {
     }
     public boolean compareInputToGame(){
         return playerInput.equals(gameInput);
+    }
+
+    public boolean isStarted() {
+        return started;
+    }
+
+    public void reset(){
+
+        this.clearPlayerInput();
+
+        this.clearGameInput();
+
+        Log.i("game_engine", "game over, score was " + this.getScore());
+
+        this.clearScore();
+
+        this.started = false;
+
+
     }
 }

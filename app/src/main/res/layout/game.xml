@@ -106,13 +106,13 @@
         app:layout_constraintTop_toBottomOf="@+id/start_b" />
 
     <TextView
-        android:id="@+id/playerName_tv"
+        android:id="@+id/high_score_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:textSize="25dp"
-        android:text="PlayerName"
+        android:text="High Score"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions_b" />
@@ -121,10 +121,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:text="playerScore"
+        android:text="Current Score"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toEndOf="@id/playerName_tv"
-        app:layout_constraintTop_toTopOf="@id/playerName_tv"
+        app:layout_constraintStart_toEndOf="@id/high_score_tv"
+        app:layout_constraintTop_toTopOf="@id/high_score_tv"
         android:layout_marginLeft="20dp"/>
 
 

@@ -58,7 +58,7 @@
         android:textSize="30dp"/>
 
     <Button
-        android:id="@+id/about"
+        android:id="@+id/aboutb"
         android:layout_width="300dp"
         android:background="@drawable/button_border"
         android:layout_margin="10dp"

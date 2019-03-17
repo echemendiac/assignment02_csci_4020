@@ -403,11 +403,25 @@ public class Original_Game extends AppCompatActivity{
     public void display(View v){
         Log.i("Instructions Button","Instructions button was hit.");
         //setup a textView to be used inside the alert dialog
-        TextView textView = new TextView(getApplicationContext());
+        String titleString = "Instructions/Rules";
+        TextView textView = new TextView(v.getContext());
         //Determine the instructions to use based on what game mode app is in
         switch (mode_key){
             case 1:
                 textView.setText(R.string.rules1);
+                break;
+            case 2:
+                textView.setText(R.string.rules2);
+                break;
+            case 3:
+                textView.setText(R.string.rules3);
+                break;
+            case 4:
+                textView.setText(R.string.rules4);
+                break;
+            case 10:
+                textView.setText(R.string.about);
+                titleString = "About";
                 break;
             case -999:
                 textView.setText("Error: Invalid button pushed.\nContact developer.");
@@ -421,15 +435,15 @@ public class Original_Game extends AppCompatActivity{
         textView.setPadding(40,40,40,40);
 
         //Allow the text view to scroll by setting it as a child of a scrollview
-        ScrollView scrollView = new ScrollView(Original_Game.this);
+        ScrollView scrollView = new ScrollView(v.getContext());
         scrollView.addView(textView);
 
 
         //Create alert dialog and set up attributes
-        new AlertDialog.Builder(Original_Game.this)
+        new AlertDialog.Builder(v.getContext())
                 //set the message of the alert dialog to be a view
                 .setView(scrollView)
-                .setTitle("Instructions/Rules")
+                .setTitle(titleString)
 
 
                 .setPositiveButton(android.R.string.ok

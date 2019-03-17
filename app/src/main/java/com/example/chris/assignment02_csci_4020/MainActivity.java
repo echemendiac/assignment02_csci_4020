@@ -28,6 +28,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttons[j].setOnClickListener(this);
 
             Log.i("MainActivity","Button modeb_"+j +": "+buttons[j]);
+
+            findViewById(R.id.aboutb).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Original_Game getMethod = new Original_Game();
+                    getMethod.mode_key = 10;
+                    getMethod.display(v);
+                }
+            });
         }
     }
 
@@ -38,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         int mode;   //stores the game mode
         //Depending on the button clicked sets up the mode int.
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.modeb_1:
                 mode = 1;
                 break;
@@ -60,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bundle = new Bundle();
 
         //Add mode int to the bundle
-        bundle.putInt("MODE_KEY",mode);
+        bundle.putInt("MODE_KEY", mode);
 
         //---- Start New Activity ----//
         Intent i = new Intent(MainActivity.this, Original_Game.class);

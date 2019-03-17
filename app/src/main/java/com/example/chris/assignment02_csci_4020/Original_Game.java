@@ -38,6 +38,13 @@ import com.example.chris.assignment02_csci_4020.correctSequence;
 
 
 public class Original_Game extends AppCompatActivity{
+    //---- Get Mode Key ----//
+
+    //create a bundle from the intent started earlier in MainActivity
+    Bundle bundle = getIntent().getExtras();
+
+    //pull key out and store the mode information
+    final int mode_key = bundle.getInt("MODE_KEY");
 
     Player player;                  //This object represents the player
     Game_Engine game = new Game_Engine(1);           //This object controls the game

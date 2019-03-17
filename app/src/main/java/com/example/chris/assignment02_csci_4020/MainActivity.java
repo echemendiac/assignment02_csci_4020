@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bundle = new Bundle();
 
         //Add mode int to the bundle
-        bundle.putInt("mode",mode);
+        bundle.putInt("MODE_KEY",mode);
 
         //---- Start New Activity ----//
         Intent i = new Intent(MainActivity.this, Original_Game.class);

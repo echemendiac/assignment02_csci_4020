@@ -67,6 +67,7 @@ public class Game_Engine {
 
     public Game_Engine(int mode){
         this.mode = mode;
+        playerISize=0;
         playerInput = new Vector<Integer>();
     }
     public boolean compareInputToGame(){

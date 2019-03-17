@@ -137,47 +137,6 @@ public class Original_Game extends AppCompatActivity{
         yellow_b = findViewById(R.id.gameb3);
         blue_b = findViewById(R.id.gameb4);
 
-        //Start Button Onclick listener
-        findViewById(R.id.start_b).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //playerName_tv.setText(player.getName());
-                //playerScore_tv.setText(player.getScore() +" pts.");
-
-                //---- Start new Game Objects ----//
-                game = new Game_Engine(mode_key);
-
-
-                buttonmap = new Vector<Integer>();
-                //buttonmap.addAll(sequence.getSequence());
-                Log.i("O Game", buttonmap+"");
-
-                for(int i=0; i<buttonmap.size();i++){
-
-                    //read in value from map Reader
-                    switch(buttonmap.get(i)){
-                        case 1:
-                            green_b.setBackgroundColor(Color.rgb(255, 35, 35));
-                            break;
-                        case 2:
-                            red_b.setBackgroundColor(Color.RED);
-                            break;
-                        case 3:
-                            yellow_b.setBackgroundColor(Color.YELLOW);
-                            break;
-                        case 4:
-                            blue_b.setBackgroundColor(Color.BLUE);
-                            break;
-                        default:
-                            Log.i("O Game", "Error: randomsequence off track" + buttonmap.get(i));
-
-                    }
-
-                }
-
-            }
-        });
 
         AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
         attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
@@ -219,52 +178,79 @@ public class Original_Game extends AppCompatActivity{
         findViewById(R.id.gameb3).setSoundEffectsEnabled(false);
         findViewById(R.id.gameb4).setSoundEffectsEnabled(false);
 
-        findViewById(R.id.gameb1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playSound(1);
-                if (game.isStarted()) {
-                    game.addPlayerInput(1);
-                    onInputChecks(editor);
-                }
-            }
-        });
+        for(int j=1; j <= 4; j++) {
+            //Below creates a new string that matches the button id
+            //Then a variable for resource id
+            String buttonID = "gameb" + j;
 
-        findViewById(R.id.gameb2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playSound(2);
-                if (game.isStarted()) {
-                    game.addPlayerInput(2);
-                    onInputChecks(editor);
-                }
-            }
-        });
-        findViewById(R.id.gameb3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playSound(3);
-                if (game.isStarted()) {
-                    game.addPlayerInput(3);
-                    onInputChecks(editor);
-                }
-            }
-        });
+            Log.i("Game Button", "gameb" +j);
 
-        findViewById(R.id.gameb4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playSound(4);
-                if (game.isStarted()) {
-                    game.addPlayerInput(4);
-                    onInputChecks(editor);
-                }
-            }
-        });
+            int resourceID = getResources().getIdentifier(buttonID, "id", getPackageName());
+            Button gameb = (Button) findViewById(resourceID);
+            gameb.setOnClickListener(new View.OnClickListener() {
+                //Simplified code by using id instead multiple onclicklistners
+                int id;
+                @Override
+                public void onClick(View v) {
+                    switch(v.getId()){
+                        case R.id.gameb1:
+                            id=1;break;
+                        case R.id.gameb2:
+                            id=2;break;
+                        case R.id.gameb3:
+                            id=3;break;
+                        case R.id.gameb4:
+                            id=4;break;
+                        default:
+                            id=-999;
+                    }
+                    playSound(id);
+                    if(game != null) {
+                        if (game.isStarted()) {
+                            game.addPlayerInput(id);
+                            onInputChecks(editor);
+                        }
+                    }
+                }});
+
+        }
+
 
         findViewById(R.id.start_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                //---- Start new Game Objects ----//
+                game = new Game_Engine(mode_key);
+
+
+                buttonmap = new Vector<Integer>();
+                //buttonmap.addAll(sequence.getSequence());
+                Log.i("O Game", buttonmap+"");
+
+                for(int i=0; i<buttonmap.size();i++){
+
+                    //read in value from map Reader
+                    switch(buttonmap.get(i)){
+                        case 1:
+                            green_b.setBackgroundColor(Color.rgb(255, 35, 35));
+                            break;
+                        case 2:
+                            red_b.setBackgroundColor(Color.RED);
+                            break;
+                        case 3:
+                            yellow_b.setBackgroundColor(Color.YELLOW);
+                            break;
+                        case 4:
+                            blue_b.setBackgroundColor(Color.BLUE);
+                            break;
+                        default:
+                            Log.i("O Game", "Error: randomsequence off track" + buttonmap.get(i));
+
+                    }
+
+                }
 
                 //startCounter();
                 if(game.getPlayerISize() > 0 || game.isStarted()){

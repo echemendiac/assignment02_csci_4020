@@ -18,14 +18,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //---- Set Up OnclickListners ----//
-        for(int j=0; j < 4; j++){
+        for(int j=1; j < 4; j++){
             //Below creates a new string that matches the button id
             //Then a variable for resource id
-            String buttonID = "modeb" + j;
+            String buttonID = "modeb_" + j;
 
             int resourceID = getResources().getIdentifier(buttonID, "id", getPackageName());
-            buttons[j] = findViewById(resourceID);
+            buttons[j] = (Button)findViewById(resourceID);
             buttons[j].setOnClickListener(this);
+
+            Log.i("MainActivity","Button modeb_"+j +": "+buttons[j]);
         }
     }
 

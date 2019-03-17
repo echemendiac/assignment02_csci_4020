@@ -41,13 +41,13 @@ public class Original_Game extends AppCompatActivity{
     //---- Get Mode Key ----//
 
     //create a bundle from the intent started earlier in MainActivity
-    Bundle bundle = getIntent().getExtras();
+    Bundle bundle;
 
     //pull key out and store the mode information
-    final int mode_key = bundle.getInt("MODE_KEY");
+    int mode_key;
 
     Player player;                  //This object represents the player
-    Game_Engine game = new Game_Engine(1);           //This object controls the game
+    Game_Engine game = new Game_Engine(mode_key);           //This object controls the game
     TextView    highScore_tv,  //Some of the textviews for the game
                 playerScore_tv,
                 title_tv;
@@ -74,6 +74,9 @@ public class Original_Game extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        bundle = getIntent().getExtras();
+        mode_key = bundle.getInt("MODE_KEY");
 
         soundsLoaded = new HashSet<Integer>();
 

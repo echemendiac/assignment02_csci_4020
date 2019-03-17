@@ -27,7 +27,7 @@
     <Button
         android:id="@+id/modeb_1"
         android:layout_width="300dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/button_border"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:text="Original Game"
@@ -35,7 +35,7 @@
     <Button
         android:id="@+id/modeb_2"
         android:layout_width="300dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/button_border"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:text="Opposite"
@@ -43,7 +43,7 @@
     <Button
         android:id="@+id/modeb_3"
         android:layout_width="300dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/button_border"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:text="Trickster"
@@ -51,7 +51,7 @@
     <Button
         android:id="@+id/modeb_4"
         android:layout_width="300dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/button_border"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:text="Ultimate"
@@ -60,7 +60,7 @@
     <Button
         android:id="@+id/about"
         android:layout_width="300dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/button_border"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:text="About App"

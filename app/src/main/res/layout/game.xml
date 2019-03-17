@@ -29,6 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title_tv"
         android:orientation="vertical"
         android:background="@android:color/black"
+        android:padding="5dp"
         android:weightSum="2">
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,6 +100,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameGrid_ll" />
     <Button
+        android:background="@drawable/button_border"
         android:id="@+id/instructions_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

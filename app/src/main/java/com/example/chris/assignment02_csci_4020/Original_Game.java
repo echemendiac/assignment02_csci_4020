@@ -6,13 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.AudioAttributes;
 import android.media.Image;
 import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
-//import android.support.design.widget.FloatingActionButton;
-//import android.support.design.widget.Snackbar;
+
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +24,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.view.KeyEvent;
@@ -38,6 +39,7 @@ import com.example.chris.assignment02_csci_4020.correctSequence;
 
 
 public class Original_Game extends AppCompatActivity{
+
     //---- Get Mode Key ----//
 
     //create a bundle from the intent started earlier in MainActivity
@@ -45,6 +47,8 @@ public class Original_Game extends AppCompatActivity{
 
     //pull key out and store the mode information
     int mode_key;
+
+    public void setMode_key(int mode_key){ this.mode_key=mode_key; }
 
     Game_Engine game;           //This object controls the game
     TextView    highScore_tv,  //Some of the textviews for the game
@@ -386,4 +390,56 @@ public class Original_Game extends AppCompatActivity{
         findViewById(R.id.gameb4).setEnabled(true);
         findViewById(R.id.instructions_b).setEnabled(true);
     }
+
+    /**
+     * This function displays an alert dialog when the user clicks the 'instructions' button
+     *
+     * @param v View that is passed in for using onclick method
+     *
+     * @precondition mode_key must be declared
+     * @postcondition none
+     */
+
+    public void display(View v){
+        Log.i("Instructions Button","Instructions button was hit.");
+        //setup a textView to be used inside the alert dialog
+        TextView textView = new TextView(getApplicationContext());
+        //Determine the instructions to use based on what game mode app is in
+        switch (mode_key){
+            case 1:
+                textView.setText(R.string.rules1);
+                break;
+            case -999:
+                textView.setText("Error: Invalid button pushed.\nContact developer.");
+            default:
+                textView.append("\n----ERRROR----");
+        }
+        //format the text view
+        textView.setTextSize(20);
+        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        textView.setTextColor(Color.BLACK);
+        textView.setPadding(40,40,40,40);
+
+        //Allow the text view to scroll by setting it as a child of a scrollview
+        ScrollView scrollView = new ScrollView(Original_Game.this);
+        scrollView.addView(textView);
+
+
+        //Create alert dialog and set up attributes
+        new AlertDialog.Builder(Original_Game.this)
+                //set the message of the alert dialog to be a view
+                .setView(scrollView)
+                .setTitle("Instructions/Rules")
+
+
+                .setPositiveButton(android.R.string.ok
+                        , new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                    }
+                })
+
+                .show();
+    }
+
 }

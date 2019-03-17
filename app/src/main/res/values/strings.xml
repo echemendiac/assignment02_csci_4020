@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Simon</string>
     <string name="title_activity_original__game">Original_Game</string>
+    <string name="rules1">
+
+        1.  Press green START button; SIMON will give the first signal.\n\n
+        2.  Repeat the signal by pressing the same lens.\n\n
+        3.  SIMON will duplicate the first signal and will add one.\n\n
+        4.  Repeat these two signals by pressing the same lenses.\n\n
+        5.  SIMON will duplicate these first two signals and add one.\n\n
+        6.  Continue in this manner as long as you can repeat each se-quence of signals correctly
+    </string>
 </resources>

@@ -110,7 +110,8 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_b" />
+        app:layout_constraintTop_toBottomOf="@+id/start_b"
+        android:onClick="display"/>
 
     <TextView
         android:id="@+id/high_score_tv"

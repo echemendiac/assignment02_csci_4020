@@ -16,25 +16,25 @@
         android:textColor="@android:color/black"
         android:layout_margin="20dp"/>
     <Button
-        android:id="@+id/originalGame_b"
+        android:id="@+id/modeb_1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Original Game"
         android:textSize="30dp"/>
     <Button
-        android:id="@+id/Variation1_b"
+        android:id="@+id/modeb_2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Original Game"
         android:textSize="30dp"/>
     <Button
-        android:id="@+id/Variation2_b"
+        android:id="@+id/modeb_3"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Original Game"
         android:textSize="30dp"/>
     <Button
-        android:id="@+id/Variation3_b"
+        android:id="@+id/modeb_4"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Original Game"

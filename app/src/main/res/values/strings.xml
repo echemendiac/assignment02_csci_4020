@@ -4,10 +4,41 @@
     <string name="rules1">
 
         1.  Press green START button; SIMON will give the first signal.\n\n
+        2.  Repeat the signal by pressing the same button.\n\n
+        3.  SIMON will duplicate the first signal and will add one.\n\n
+        4.  Repeat these two signals by pressing the same buttons.\n\n
+        5.  SIMON will duplicate these first two signals and add one.\n\n
+        6.  Continue in this manner as long as you can repeat each se-quence of signals correctly
+    </string>
+    <string name="rules2">
+        NOTE: This game is just like the original SIMON except the user puts in the sequence backwards.
+        1.  Press green START button; SIMON will give the first signal.\n\n
+        2.  Repeat the signal by pressing the same button.\n\n
+        3.  SIMON will duplicate the first signal and will add one.\n\n
+        4.  Repeat these two signals by pressing the same buttons in reverse order.\n\n
+        5.  SIMON will duplicate the first two signals and add one.\n\n
+        6.  Continue in this manner as long as you can repeat each se-quence of signals BACKWARDS correctly
+    </string>
+    <string name="rules3">
+        NOTE: This game is just like the original SIMON excepts sometimes the sound switches up.
+        1.  Press green START button; SIMON will give the first signal.\n\n
         2.  Repeat the signal by pressing the same lens.\n\n
         3.  SIMON will duplicate the first signal and will add one.\n\n
         4.  Repeat these two signals by pressing the same lenses.\n\n
         5.  SIMON will duplicate these first two signals and add one.\n\n
         6.  Continue in this manner as long as you can repeat each se-quence of signals correctly
+    </string>
+    <string name="rules4">
+        NOTE: This game is just like the original SIMON except all the sounds and buttons are the same.
+        1.  Press green START button; SIMON will give the first signal.\n\n
+        2.  Repeat the signal by pressing the same lens.\n\n
+        3.  SIMON will duplicate the first signal and will add one.\n\n
+        4.  Repeat these two signals by pressing the same lenses.\n\n
+        5.  SIMON will duplicate these first two signals and add one.\n\n
+        6.  Continue in this manner as long as you can repeat each se-quence of signals correctly
+    </string>
+    <string name="about">
+        This app was created by Dylan Smith and Christopher Echemendia.\n\n
+        The sole purpose of this app is for educational purposes only.
     </string>
 </resources>

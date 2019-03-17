@@ -54,7 +54,7 @@
         android:background="@drawable/button_border"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        android:text="Ultimate"
+        android:text="Surprise"
         android:textSize="30dp"/>
 
     <Button

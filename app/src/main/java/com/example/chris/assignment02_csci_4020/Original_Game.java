@@ -113,7 +113,7 @@ public class Original_Game extends AppCompatActivity{
                 title_tv.setText("Trickster");
                 break;
             case 4:
-                title_tv.setText("Ultimate");
+                title_tv.setText("Surprise!");
                 break;
             case -999:
                 title_tv.setText("Error: Wrong Button");

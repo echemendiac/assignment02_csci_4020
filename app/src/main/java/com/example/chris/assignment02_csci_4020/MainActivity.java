@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //---- Set Up OnclickListners ----//
-        for(int j=1; j < 4; j++){
+        for(int j=0; j <= 3; j++){
             //Below creates a new string that matches the button id
             //Then a variable for resource id
-            String buttonID = "modeb_" + j;
+            String buttonID = "modeb_" + (j+1);
 
             int resourceID = getResources().getIdentifier(buttonID, "id", getPackageName());
             buttons[j] = (Button)findViewById(resourceID);
@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.modeb_1:
                 mode = 1;
                 break;
-            case R.id.gameb2:
+            case R.id.modeb_2:
                 mode = 2;
                 break;
-            case R.id.gameb3:
+            case R.id.modeb_3:
                 mode = 3;
                 break;
-            case R.id.gameb4:
+            case R.id.modeb_4:
                 mode = 4;
                 break;
             default:

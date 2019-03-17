@@ -46,8 +46,7 @@ public class Original_Game extends AppCompatActivity{
     //pull key out and store the mode information
     int mode_key;
 
-    Player player;                  //This object represents the player
-    Game_Engine game = new Game_Engine(mode_key);           //This object controls the game
+    Game_Engine game;           //This object controls the game
     TextView    highScore_tv,  //Some of the textviews for the game
                 playerScore_tv,
                 title_tv;
@@ -57,7 +56,6 @@ public class Original_Game extends AppCompatActivity{
                 yellow_b,
                 blue_b;
     Vector<Integer> buttonmap;
-    final int original = 1; //mode for the game
 
     private SoundPool soundPool;
     private Set<Integer> soundsLoaded;
@@ -95,10 +93,32 @@ public class Original_Game extends AppCompatActivity{
 
         Log.i("highscore", "highscore is currently " + HighScore);
 
+        //---- Set Up Title ----//
         title_tv = findViewById(R.id.title_tv);
 
-        //---- Create InGame Objects ----//
-        player = new Player(this);
+        Log.i("mode","Mode: " +mode_key);
+
+        switch (mode_key){
+            case 1:
+                title_tv.setText("Original");
+                break;
+            case 2:
+                title_tv.setText("Opposite");
+                break;
+            case 3:
+                title_tv.setText("Trickster");
+                break;
+            case 4:
+                title_tv.setText("Ultimate");
+                break;
+            case -999:
+                title_tv.setText("Error: Wrong Button");
+            default:
+                title_tv.append("\nERROR");
+        }
+
+
+
 
 
         Log.i("o game", "am I working");
@@ -126,7 +146,7 @@ public class Original_Game extends AppCompatActivity{
                 //playerScore_tv.setText(player.getScore() +" pts.");
 
                 //---- Start new Game Objects ----//
-                game = new Game_Engine(original);
+                game = new Game_Engine(mode_key);
 
 
                 buttonmap = new Vector<Integer>();

@@ -83,7 +83,25 @@ public class Original_Game extends AppCompatActivity{
         soundsLoaded = new HashSet<Integer>();
 
         SharedPreferences prefs = this.getSharedPreferences("myPrefsKey", Context.MODE_PRIVATE);
-        HighScore = prefs.getInt("OriginalHighScore", 0);
+
+        switch (mode_key) {
+            case 1:
+                HighScore = prefs.getInt("OriginalHighScore", 0);
+                break;
+            case 2:
+                HighScore = prefs.getInt("OppositeHighScore", 0);
+                break;
+            case 3:
+                HighScore = prefs.getInt("TricksterHighScore", 0);
+                break;
+            case 4:
+                HighScore = prefs.getInt("SurpriseHighScore", 0);
+                break;
+            case -999:
+                Log.i("game_load", "error getting highscore");
+            default:
+                Log.i("game_load", "error getting highscore");
+        }
 
     }
 
@@ -93,7 +111,24 @@ public class Original_Game extends AppCompatActivity{
 
         SharedPreferences prefs = this.getSharedPreferences("myPrefsKey", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = prefs.edit();
-        HighScore = prefs.getInt("OriginalHighScore", 0);
+            switch (mode_key) {
+                case 1:
+                    HighScore = prefs.getInt("OriginalHighScore", 0);
+                    break;
+                case 2:
+                    HighScore = prefs.getInt("OppositeHighScore", 0);
+                    break;
+                case 3:
+                    HighScore = prefs.getInt("TricksterHighScore", 0);
+                    break;
+                case 4:
+                    HighScore = prefs.getInt("SurpriseHighScore", 0);
+                    break;
+                case -999:
+                    Log.i("game_load", "error getting highscore");
+                default:
+                    Log.i("game_load", "error getting highscore");
+            }
 
         Log.i("highscore", "highscore is currently " + HighScore);
 
@@ -189,6 +224,13 @@ public class Original_Game extends AppCompatActivity{
 
             Log.i("Game Button", "gameb" +j);
 
+            if (mode_key == 4) {
+                findViewById(R.id.gameb1).setBackgroundColor(Color.GRAY);
+                findViewById(R.id.gameb2).setBackgroundColor(Color.GRAY);
+                findViewById(R.id.gameb3).setBackgroundColor(Color.GRAY);
+                findViewById(R.id.gameb4).setBackgroundColor(Color.GRAY);
+            }
+
             int resourceID = getResources().getIdentifier(buttonID, "id", getPackageName());
             Button gameb = (Button) findViewById(resourceID);
             gameb.setOnClickListener(new View.OnClickListener() {
@@ -273,26 +315,89 @@ public class Original_Game extends AppCompatActivity{
     }
 
     private void onInputChecks(SharedPreferences.Editor e){
-        if(game.getPlayerISize() == game.getGameInputSize()) {
-            if (correctSequence.check(game.getGameInput(), game.getPlayerInput())) {
-                game.addGameInput(sequence.getSequence());
-                game.updateScore(game.getScore()+1);
-                playerScore_tv.setText("Current Score: " + game.getScore());
+        if(mode_key != 2) {
+            if (game.getPlayerISize() == game.getGameInputSize()) {
+                if (correctSequence.check(game.getGameInput(), game.getPlayerInput())) {
+                    game.addGameInput(sequence.getSequence());
+                    game.updateScore(game.getScore() + 1);
+                    playerScore_tv.setText("Current Score: " + game.getScore());
 
-                if(game.getScore() > HighScore){
-                    e.putInt("OriginalHighScore", game.getScore());
-                    e.commit();
-                    HighScore = game.getScore();
-                    highScore_tv.setText("High Score: " + HighScore);
+                    if (game.getScore() > HighScore) {
+                        switch (mode_key) {
+                            case 1:
+                                e.putInt("OriginalHighScore", game.getScore());
+                                break;
+                            case 2:
+                                e.putInt("OppositeHighScore", game.getScore());
+
+                                break;
+                            case 3:
+                                e.putInt("TricksterHighScore", game.getScore());
+                                break;
+                            case 4:
+                                e.putInt("SurpriseHighScore", game.getScore());
+                                break;
+                            case -999:
+                                Log.i("game_checks", "error pushing highscore");
+                            default:
+                                Log.i("game_checks", "error pushing highscore");
+                        }
+                        e.commit();
+                        HighScore = game.getScore();
+                        highScore_tv.setText("High Score: " + HighScore);
+                    }
+
+                    playSequence(game.getGameInput(), soundIds);
+                    game.clearPlayerInput();
+                } else if (!correctSequence.check(game.getGameInput(), game.getPlayerInput())) {
+                    game.reset();
+                    sequence.clearSequence();
                 }
 
-                playSequence(game.getGameInput(), soundIds);
-                game.clearPlayerInput();
-            } else if (!correctSequence.check(game.getGameInput(), game.getPlayerInput())) {
-                game.reset();
-                sequence.clearSequence();
             }
         }
+        else if(mode_key == 2){
+            if (game.getPlayerISize() == game.getGameInputSize()) {
+                if (correctSequence.oppositeCheck(game.getGameInput(), game.getPlayerInput())) {
+                    game.addGameInput(sequence.getSequence());
+                    game.updateScore(game.getScore() + 1);
+                    playerScore_tv.setText("Current Score: " + game.getScore());
+
+                    if (game.getScore() > HighScore) {
+                        switch (mode_key) {
+                            case 1:
+                                e.putInt("OriginalHighScore", game.getScore());
+                                break;
+                            case 2:
+                                e.putInt("OppositeHighScore", game.getScore());
+
+                                break;
+                            case 3:
+                                e.putInt("TricksterHighScore", game.getScore());
+                                break;
+                            case 4:
+                                e.putInt("SurpriseHighScore", game.getScore());
+                                break;
+                            case -999:
+                                Log.i("game_checks", "error pushing highscore");
+                            default:
+                                Log.i("game_checks", "error pushing highscore");
+                        }
+                        e.commit();
+                        HighScore = game.getScore();
+                        highScore_tv.setText("High Score: " + HighScore);
+                    }
+
+                    playSequence(game.getGameInput(), soundIds);
+                    game.clearPlayerInput();
+                } else if (!correctSequence.oppositeCheck(game.getGameInput(), game.getPlayerInput())) {
+                    game.reset();
+                    sequence.clearSequence();
+                }
+
+            }
+        }
+
     }
 
     @Override
@@ -307,22 +412,26 @@ public class Original_Game extends AppCompatActivity{
     }
 
     private void playSound(int soundId) {
-        if (soundsLoaded.contains(soundId)) {
-            soundPool.play(soundIds.elementAt((soundId-1)), 1.0f, 1.0f, 0, 0, 1.0f);
-            switch(soundId){
-                case 1:
-                    findViewById(R.id.gameb1).startAnimation(animation);
-                    break;
-                case 2:
-                    findViewById(R.id.gameb2).startAnimation(animation);
-                    break;
-                case 3:
-                    findViewById(R.id.gameb3).startAnimation(animation);
-                    break;
-                case 4:
-                    findViewById(R.id.gameb4).startAnimation(animation);
-                    break;
+        switch (soundId) {
+            case 1:
+                findViewById(R.id.gameb1).startAnimation(animation);
+                break;
+            case 2:
+                findViewById(R.id.gameb2).startAnimation(animation);
+                break;
+            case 3:
+                findViewById(R.id.gameb3).startAnimation(animation);
+                break;
+            case 4:
+                findViewById(R.id.gameb4).startAnimation(animation);
+                break;
+        }
+        if(mode_key != 4) {
+            if (soundsLoaded.contains(soundId)) {
+                soundPool.play(soundIds.elementAt((soundId - 1)), 1.0f, 1.0f, 0, 0, 1.0f);
             }
+        } else if (mode_key == 4) {
+            soundPool.play(soundIds.elementAt(0), 1.0f, 1.0f, 0, 0, 1.0f);
         }
     }
 

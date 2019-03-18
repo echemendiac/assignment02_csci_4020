@@ -15,4 +15,17 @@ public class correctSequence {
         Log.i("game_seq_check", "CORRECT!!!!!!!!");
         return true;
     }
+
+    public static boolean oppositeCheck(Vector game, Vector player){
+        int j = player.size() - 1;
+        for(int i = 0; i < player.size(); i++){
+            if(player.elementAt(i) != game.elementAt(j)){
+                Log.i("game_seq_check", "WRONG!!!!!!!!");
+                return false;
+            }
+            j--;
+        }
+        Log.i("game_seq_check", "CORRECT!!!!!!!!");
+        return true;
+    }
 }

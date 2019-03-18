@@ -32,6 +32,7 @@ import android.view.KeyEvent;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.Vector;
 
@@ -250,7 +251,7 @@ public class Original_Game extends AppCompatActivity{
                         default:
                             id=-999;
                     }
-                    playSound(id);
+                    playSound(id, id);
                     if(game != null) {
                         if (game.isStarted()) {
                             game.addPlayerInput(id);
@@ -411,8 +412,8 @@ public class Original_Game extends AppCompatActivity{
         }
     }
 
-    private void playSound(int soundId) {
-        switch (soundId) {
+    private void playSound(int soundId, int flash) {
+        switch (flash) {
             case 1:
                 findViewById(R.id.gameb1).startAnimation(animation);
                 break;
@@ -430,12 +431,15 @@ public class Original_Game extends AppCompatActivity{
             if (soundsLoaded.contains(soundId)) {
                 soundPool.play(soundIds.elementAt((soundId - 1)), 1.0f, 1.0f, 0, 0, 1.0f);
             }
-        } else if (mode_key == 4) {
+        }
+        else if (mode_key == 4) {
             soundPool.play(soundIds.elementAt(0), 1.0f, 1.0f, 0, 0, 1.0f);
         }
     }
 
     private void playSequence(Vector<Integer> gInput, final Vector<Integer> sounds){
+        Random trickster = new Random();
+
         findViewById(R.id.start_b).setEnabled(false);
         findViewById(R.id.gameb1).setEnabled(false);
         findViewById(R.id.gameb2).setEnabled(false);
@@ -453,7 +457,12 @@ public class Original_Game extends AppCompatActivity{
             if(gInput.elementAt(i) == 1){
                 Log.i("game", "hit green");
                 //findViewById(R.id.gameb1).startAnimation(animation);
-                playSound(gInput.elementAt(i));
+                if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4 && game.getScore() > 1){
+                    playSound((trickster.nextInt(4)+ 1), gInput.elementAt(i));
+                }
+                else {
+                    playSound(gInput.elementAt(i), gInput.elementAt(i));
+                }
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException e) {
@@ -463,7 +472,12 @@ public class Original_Game extends AppCompatActivity{
             else if(gInput.elementAt(i) == 2){
                 Log.i("game", "hit red");
                 //findViewById(R.id.gameb2).startAnimation(animation);
-                playSound(gInput.elementAt(i));
+                if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4 && game.getScore() > 1){
+                    playSound((trickster.nextInt(4)+ 1), gInput.elementAt(i));
+                }
+                else {
+                    playSound(gInput.elementAt(i), gInput.elementAt(i));
+                }
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException e) {
@@ -473,17 +487,27 @@ public class Original_Game extends AppCompatActivity{
             else if(gInput.elementAt(i) == 3){
                 Log.i("game", "hit yellow");
                 //findViewById(R.id.gameb3).startAnimation(animation);
-                playSound(gInput.elementAt(i));
+                if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4 && game.getScore() > 1){
+                    playSound((trickster.nextInt(4)+ 1), gInput.elementAt(i));
+                }
+                else {
+                    playSound(gInput.elementAt(i), gInput.elementAt(i));
+                }
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            else if(gInput.elementAt(i) == 4){
+            else if(gInput.elementAt(i) == 4 && game.getScore() > 1){
                 Log.i("game", "hit blue");
                 //findViewById(R.id.gameb4).startAnimation(animation);
-                playSound(gInput.elementAt(i));
+                if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4){
+                    playSound((trickster.nextInt(4)+ 1), gInput.elementAt(i));
+                }
+                else {
+                    playSound(gInput.elementAt(i), gInput.elementAt(i));
+                }
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException e) {

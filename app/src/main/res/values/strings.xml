@@ -39,6 +39,10 @@
     </string>
     <string name="about">
         This app was created by Dylan Smith and Christopher Echemendia.\n\n
-        The sole purpose of this app is for educational purposes only.
+        The sole purpose of this app is for educational purposes only.\n\n
+
+        resofactorcblip.wav is license is under creative commons 3.0.
+        It was uploaded to freesound.org by username resofactor and
+        was originally named 443186__resofactor__c8-blip.wav.
     </string>
 </resources>

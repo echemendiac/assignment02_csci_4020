@@ -447,7 +447,11 @@ public class Original_Game extends AppCompatActivity{
         findViewById(R.id.gameb4).setEnabled(false);
         findViewById(R.id.instructions_b).setEnabled(false);
 
-        for(int i = 0; i < gInput.size(); i++){
+
+        UpdateTask updateTask = new UpdateTask();
+        updateTask.execute();
+
+        /*for(int i = 0; i < gInput.size(); i++){
             try {
                 Thread.sleep(375);
             } catch (InterruptedException e) {
@@ -514,7 +518,7 @@ public class Original_Game extends AppCompatActivity{
                     e.printStackTrace();
                 }
             }
-        }
+        }*/
 
         findViewById(R.id.start_b).setEnabled(true);
         findViewById(R.id.gameb1).setEnabled(true);
@@ -523,6 +527,81 @@ public class Original_Game extends AppCompatActivity{
         findViewById(R.id.gameb4).setEnabled(true);
         findViewById(R.id.instructions_b).setEnabled(true);
     }
+
+    class UpdateTask extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids){
+            final Vector<Integer> gi = game.getGameInput();
+            final Random trickster = new Random();
+
+            for(int j = 0; j < gi.size(); j++){
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                final int i = j;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                        if(gi.elementAt(i) == 1){
+                            Log.i("game", "hit green");
+                            findViewById(R.id.gameb1).startAnimation(animation);
+                            if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4 && game.getScore() > 1){
+                                playSound((trickster.nextInt(4)+ 1), gi.elementAt(i));
+                            }
+                            else {
+                                playSound(gi.elementAt(i), gi.elementAt(i));
+                            }
+                        }
+                        else if(gi.elementAt(i) == 2){
+                            Log.i("game", "hit red");
+                            findViewById(R.id.gameb2).startAnimation(animation);
+                            if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4 && game.getScore() > 1){
+                                playSound((trickster.nextInt(4)+ 1), gi.elementAt(i));
+                            }
+                            else {
+                                playSound(gi.elementAt(i), gi.elementAt(i));
+                            }
+                        }
+                        else if(gi.elementAt(i) == 3){
+                            Log.i("game", "hit yellow");
+                            findViewById(R.id.gameb3).startAnimation(animation);
+                            if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4 && game.getScore() > 1){
+                                playSound((trickster.nextInt(4)+ 1), gi.elementAt(i));
+                            }
+                            else {
+                                playSound(gi.elementAt(i), gi.elementAt(i));
+                            }
+                        }
+                        else if(gi.elementAt(i) == 4 && game.getScore() > 1){
+                            Log.i("game", "hit blue");
+                            findViewById(R.id.gameb4).startAnimation(animation);
+                            if(mode_key == 3 && (trickster.nextInt(4)+ 1) == 4){
+                                playSound((trickster.nextInt(4)+ 1), gi.elementAt(i));
+                            }
+                            else {
+                                playSound(gi.elementAt(i), gi.elementAt(i));
+                            }
+                        }
+                    }
+
+            });
+
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            return null;
+        }
+    }
+
 
     /**
      * This function displays an alert dialog when the user clicks the 'instructions' button
